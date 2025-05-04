@@ -1,0 +1,51 @@
+📊 Technicals: Stochastic RSI (TradingView-style)
+
+This module provides an efficient implementation of Stochastic RSI, using NumPy and TA-Lib, designed to mimic TradingView-style calculations more accurately than standard libraries.
+🔧 Features
+
+    ✅ Fast NumPy-based rolling operations
+
+    ✅ Mimics TradingView's RSI → StochRSI process
+
+    ✅ Smoothed %K and %D lines (with configurable window)
+
+    ✅ Built-in logging for debugging
+
+🧮 How it works
+
+    RSI is calculated from the price/close array.
+
+    Stochastic RSI is computed from the RSI values.
+
+    %K and %D lines are smoothed using NumPy’s sliding_window_view.
+
+📦 Dependencies
+
+Ensure you install:
+
+pip install numpy TA-Lib
+
+📈 Example
+
+import numpy as np
+from technicals import Technicals
+
+# Example price array
+prices = np.array([
+    84108.71, 84169.82, 84138.83, 84147.58, 84143.41,
+    84156.24, 84098.49, 84000.01, 83992.83, 83978.26,
+    # ... more values ...
+])
+
+technicals = Technicals()
+stoch_k, stoch_d = technicals.calculate_stoch_rsi_as_tradingview_numpy_fast(prices)
+print("Stochastic RSI %K:", stoch_k)
+print("Stochastic RSI %D:", stoch_d)
+
+⚠️ Notes
+
+Needs at least period + k + d data points to produce valid output.
+
+Returns None if input is too short.
+
+Logging will output debug messages to stdout.
